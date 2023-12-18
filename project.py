@@ -27,6 +27,7 @@ def get_valid_input(text: str = "", only_digit: bool = False, drange: tuple = (0
             
 
 def sign_in():
+    global username, user_data
     username = get_valid_input("Enter library username: ").lower()
     data_file = None
     try:
@@ -58,7 +59,11 @@ def register():
         main()
     else:
         user_data = {
-            "password": get_valid_input("Enter new password: ")
+            "password": get_valid_input("Enter new password: "),
+            "books": {
+                "borrowed": [], # (name, issue_date, supposed_return_date) 
+                "returned": [] # (name, issue_date, returned_date) 
+            }
         }
         data_file = open(f"library_data/{username}.data", "w")
         json.dump(user_data, data_file)
@@ -68,7 +73,43 @@ def register():
 
 
 def dashboard():
-    pass
+    print("\n--------------------------Dashboard------------------------------")
+    # print(user_data)
+    match get_valid_input("list borrowed (0) / list returned (1) / borrow more (2) / return more (3): ",
+                          True,
+                          (0,4)):
+        case 0:
+            list_borrowed()
+        case 1:
+            list_returned()
+        case 2:
+            borrow_more()
+        case 3:
+            return_more()    
+
+
+def list_borrowed():
+    books_borrowed = user_data["books"]["borrowed"]
+    if len(books_borrowed) == 0:
+        print("Currently no borrowed books")
+    else:
+        print("Currently borrowed books: ")
+        print("    ")
+        for i in range(len(books_borrowed)):
+            name, issue_data, return_date = books_borrowed[i]
+            print(f"{i}. '{name}' borrowed at time {issue_date} is due at {return_date}")
+
+
+def list_returned():
+    books_returned = user_data["books"]["returned"]
+    if len(books_borrowed) == 0:
+        print("Currently no returned books")
+    else:
+        print("Currently returned books: ")
+        print("    ")
+        for i in range(len(books_borrowed)):
+            name, issue_data, returned_date = books_borrowed[i]
+            print(f"{i}. '{name}' borrowed at time {issue_date} was returned at {returned_date}")
 
 
 if __name__ == "__main__":

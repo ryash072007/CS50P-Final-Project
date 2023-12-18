@@ -35,9 +35,8 @@ Description: A application that helps libraries manage their books and users. Th
 
 Features:
 
-User Authentication: Register and login functionality for library staff and users.
+User Authentication: Register and login functionality for users.
 Book Management: Add, edit, delete books. Track book status (available, borrowed, etc.).
-User Management: Add, edit, delete users. Track user borrow history.
 Borrow/Return: Manage borrow and return transactions.
 Search: Allow users to search for books by title, author, genre, etc.
 Overdue Alerts: Notify users when a book is overdue.
