@@ -1,8 +1,11 @@
+import json
+
+
 username = None
 user_data = None
 
-def main():
-    print("-----------------Library Management System Login-----------------")
+def main(greet = False):
+    if greet: print("-----------------Library Management System Login-----------------")
     match get_valid_input("Do you want to sign in or register: (0 -> Sign In | 1 -> Register) ", True):
         case 0:
             sign_in()
@@ -30,12 +33,11 @@ def sign_in():
         data_file = open(f"library_data/{username}.data", "r")
     except:
         print(f"Username '{username}' does not exist! Try again!")
-        sign_in()
-    user_password = data_file.readline().strip()
-    user_data = data_file.readlines()
+        main()
+    user_data = json.load(data_file)
     data_file.close()
     
-    if get_valid_input("Enter password: ") != user_password:
+    if get_valid_input("Enter password: ") != user_data["password"]:
         print("Incorrect password!")
         sign_in()
     else:
@@ -43,9 +45,31 @@ def sign_in():
         dashboard()
   
 
+def register():
+    username = get_valid_input("Enter new library username: ").lower()
+    data_file = None
+    try:
+        data_file = open(f"library_data/{username}.data", "r")
+    except:
+        pass
+    if data_file:
+        data_file.close()
+        print(f"Username '{username}' already exists!")
+        main()
+    else:
+        user_data = {
+            "password": get_valid_input("Enter new password: ")
+        }
+        data_file = open(f"library_data/{username}.data", "w")
+        json.dump(user_data, data_file)
+        data_file.close()
+        print("You have successfully registered yourself!")
+        dashboard()
+
+
 def dashboard():
     pass
 
 
 if __name__ == "__main__":
-    main()
+    main(True)
