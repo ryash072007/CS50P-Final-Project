@@ -44,4 +44,4 @@ Overdue Alerts: Notify users when a book is overdue.
 Reports: Generate reports on most borrowed books, active users, etc.
 
 
-Project Idea Chosen: 
+Project Idea Chosen: Project Idea 3: "Library Management System"
