@@ -1,6 +1,6 @@
 Project Idea 1: "Personal Finance Tracker"
 
-Description: A web application that allows users to track their income, expenses, and savings. The application should provide a user-friendly interface for entering transactions, categorizing them, and viewing summaries and reports.
+Description: A application that allows users to track their income, expenses, and savings. The application should provide a user-friendly interface for entering transactions, categorizing them, and viewing summaries and reports.
 
 Features:
 
@@ -16,7 +16,7 @@ Alerts: Notify users when they are close to or exceed their budget.
 
 Project Idea 2: "Recipe Finder"
 
-Description: A web application that allows users to search for recipes based on ingredients they have. The application should provide a user-friendly interface for entering ingredients, searching for recipes, and viewing recipe details.
+Description: A application that allows users to search for recipes based on ingredients they have. The application should provide a user-friendly interface for entering ingredients, searching for recipes, and viewing recipe details.
 
 Features:
 
@@ -31,7 +31,7 @@ Shopping List: Generate a shopping list based on the ingredients needed for a re
 
 Project Idea 3: "Library Management System"
 
-Description: A web application that helps libraries manage their books and users. The application should provide a user-friendly interface for managing books, users, and borrow/return transactions.
+Description: A application that helps libraries manage their books and users. The application should provide a user-friendly interface for managing books, users, and borrow/return transactions.
 
 Features:
 
@@ -42,3 +42,6 @@ Borrow/Return: Manage borrow and return transactions.
 Search: Allow users to search for books by title, author, genre, etc.
 Overdue Alerts: Notify users when a book is overdue.
 Reports: Generate reports on most borrowed books, active users, etc.
+
+
+Project Idea Chosen: 
