@@ -12,9 +12,9 @@ The aim of the project is provide a simple TUI (Textual User Interface) to manag
 	 1 -> Register
 	 
 2. a. If 0 is entered / Sign In is selected, the user is prompted to enter their username followed by their password. If they are valid, they are taken to the dashboard, otherwise, they are taken back to 1.
-2. b. If 1 is entered / Register
+2. b. If 1 is entered / Register is selected, the user is prompted to enter what they want their new username to be followed by what they want to set their password to.
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTMyNDU2MDM5NCwtMTM2MzA4OTYwNSwtMT
-MwNDc3MTM3OF19
+eyJoaXN0b3J5IjpbNzIwMjYwOTczLC0xMzYzMDg5NjA1LC0xMz
+A0NzcxMzc4XX0=
 -->
