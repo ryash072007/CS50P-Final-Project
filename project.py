@@ -126,11 +126,11 @@ def return_more():
         return_index = get_valid_input("Which book index do you want to return? ", True, (0, index))
         book = all_books[return_index - 1]
         user_data["books"]["borrowed"].remove(book)
+        user_data["books"]["returned"].append(book)
         data_file = open(f"library_data/{username}.data", "w")
         json.dump(user_data, data_file)
         data_file.close()
         print("Successfully returned book!")
-
 
 
 def list_borrowed():
@@ -147,13 +147,13 @@ def list_borrowed():
 
 def list_returned():
     books_returned = user_data["books"]["returned"]
-    if len(books_borrowed) == 0:
+    if len(books_returned) == 0:
         print("Currently no returned books")
     else:
         print("Currently returned books: ")
         print("    ")
-        for i in range(len(books_borrowed)):
-            name, issue_data, returned_date = books_borrowed[i]
+        for i in range(len(books_returned)):
+            name, issue_date, returned_date = books_returned[i]
             print(f"{i}. '{name}' borrowed on {issue_date} was returned on {returned_date}")
 
 
@@ -166,7 +166,7 @@ def borrow_more():
             list_books()
         case 2:
             choose_random_book()
-    borrow_more()
+    dashboard()
 
 
 def search_book():
@@ -218,6 +218,7 @@ def choose_random_book():
             print("Successfully borrowed book!")
         case 1:
             choose_random_book()
+
 
 if __name__ == "__main__":
     main(True)
