@@ -8,18 +8,22 @@ username = None
 user_data = None
 
 
-def main(greet = False):
+def main(greet = False, input_data = ""):
     if greet: print("-----------------Library Management System Login-----------------")
-    match get_valid_input("Do you want to sign in or register: (0 -> Sign In | 1 -> Register) ", True):
+    match get_valid_input("Do you want to sign in or register: (0 -> Sign In | 1 -> Register) ", True, input_data = input_data):
         case 0:
+            if input_data:
+                return "signin"
             sign_in()
         case 1:
+            if input_data:
+                return "register"
             register()
 
 
-def get_valid_input(text: str = "", only_digit: bool = False, drange: tuple = (0, 2)):
+def get_valid_input(text: str = "", only_digit: bool = False, drange: tuple = (0, 2), input_data = ""):
     while True:
-        data = input(text)
+        data = input(text) if not input_data else input_data
         if not data:
             print("Enter non empty text")
             continue
@@ -30,23 +34,31 @@ def get_valid_input(text: str = "", only_digit: bool = False, drange: tuple = (0
         return data if not only_digit else int(data)
             
 
-def sign_in():
+def sign_in(_username = None, _password = None):
     global username, user_data
-    username = get_valid_input("Enter library username: ").lower()
+    username = get_valid_input("Enter library username: ").lower() if not _username else _username.lower()
     data_file = None
     try:
         data_file = open(f"library_data/{username}.data", "r")
     except:
         print(f"Username '{username}' does not exist! Try again!")
+        if _username:
+            return False
         main()
     user_data = json.load(data_file)
     data_file.close()
     
-    if get_valid_input("Enter password: ") != user_data["password"]:
+    password = get_valid_input("Enter password: ")  if not _password else _password
+    
+    if password != user_data["password"]:
         print("Incorrect password!")
+        if _password:
+            return False
         sign_in()
     else:
         print("Successfully Signed In!")
+        if _password:
+            return True
         dashboard()
   
 
