@@ -7,9 +7,12 @@ The aim of the project is provide a simple TUI (Textual User Interface) to manag
 
 ## How to use:
 
- 1. Prompts user if they want to sign in or 
+ 1. #### Prompts user if they want to Sign In or Register themself.
+	 0 -> Sign In
+	 1 -> Register
+2. a. IF 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTUzODM1ODg1LC0xMzYzMDg5NjA1LC0xMz
-A0NzcxMzc4XX0=
+eyJoaXN0b3J5IjpbMTA3NTYwMTE0MiwtMTM2MzA4OTYwNSwtMT
+MwNDc3MTM3OF19
 -->
