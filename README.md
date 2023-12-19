@@ -18,9 +18,14 @@ The aim of the project is provide a simple TUI (Textual User Interface) to manag
 
 5. The user can borrow more books by selecting option 2, upon which they have 3 more options: search by book name (0), list all books (1), and random book (2).
 
-6.  
+6. The user can return books by selection option 3, upon which they are prompted to enter which book they want to return. This page also shows which books are overdue and which are still within valid range.
+
+7. The user can exit by selection option 4.
+
+
+## How to use:
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTY3MTU1NzQxNiwtMTM2MzA4OTYwNSwtMT
-MwNDc3MTM3OF19
+eyJoaXN0b3J5IjpbNzcyMjMxMDI1LC02NzE1NTc0MTYsLTEzNj
+MwODk2MDUsLTEzMDQ3NzEzNzhdfQ==
 -->
