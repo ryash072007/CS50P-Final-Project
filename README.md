@@ -16,9 +16,11 @@ The aim of the project is provide a simple TUI (Textual User Interface) to manag
 
 4. The user can then see which all books they have borrowed at the moment and which all books they have returned in the past by selecting option 0 and 1 respectively.
 
-5. The user can borrow more books by selecting option 2, upon w 
+5. The user can borrow more books by selecting option 2, upon which they have 3 more options: search by book name (0), list all books (1), and random book (2).
+
+6.  
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTc3ODE4NjA1NSwtMTM2MzA4OTYwNSwtMT
+eyJoaXN0b3J5IjpbLTY3MTU1NzQxNiwtMTM2MzA4OTYwNSwtMT
 MwNDc3MTM3OF19
 -->
