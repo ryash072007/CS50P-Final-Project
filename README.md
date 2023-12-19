@@ -5,7 +5,7 @@
 This is the final project for CS50P for Ryash072007.
 The aim of the project is provide a simple TUI (Textual User Interface) to manage a user's borrowed and returned books as well as to borrow more books from the virtual library.
 
-## How to use:
+## How to use
 
  1. Prompts user if they want to Sign In or Register themself.
 	 0 -> Sign In
@@ -23,9 +23,9 @@ The aim of the project is provide a simple TUI (Textual User Interface) to manag
 7. The user can exit by selection option 4.
 
 
-## How to use:
-
+## Design
+There is a folder in the same level as project.py labelled "library_data" which contains variable amounts (number of users) of '.data' files. The names of these files are the u 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzcyMjMxMDI1LC02NzE1NTc0MTYsLTEzNj
+eyJoaXN0b3J5IjpbNjAwNTYxNTQ1LC02NzE1NTc0MTYsLTEzNj
 MwODk2MDUsLTEzMDQ3NzEzNzhdfQ==
 -->
