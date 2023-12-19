@@ -1,11 +1,12 @@
 import json
 import re
 import random
-from datetime import date, timedelta
+from datetime import date, timedelta, datetime
 
 
 username = None
 user_data = None
+
 
 def main(greet = False):
     if greet: print("-----------------Library Management System Login-----------------")
@@ -88,7 +89,48 @@ def dashboard():
         case 2:
             borrow_more()
         case 3:
-            return_more()    
+            return_more() 
+    dashboard()   
+
+
+def return_more():
+    books_borrowed = user_data["books"]["borrowed"]
+    if len(books_borrowed) == 0:
+        print("Currently no borrowed books to return")
+    else:
+        print("Currently borrowed books: ")
+        overdue = []
+        valid = []
+        for i in range(len(books_borrowed)):
+            name, issue_date, return_date = books_borrowed[i]
+            # issue_date = datetime.strptime(issue_date, '%Y-%m-%d').date()
+            return_date = datetime.strptime(return_date, '%Y-%m-%d').date()
+            if date.today() > return_date:
+                overdue.append(books_borrowed[i])
+            else:
+                valid.append(books_borrowed[i])
+        all_books = overdue + valid
+        index = 0
+        if overdue:
+            print(f"You have {len(overdue)} books overdue!")
+            for name, issue_date, return_date in overdue:
+                print(f"{index}. '{name}' is overdue and has to be returned ASAP.")
+                index += 1
+        if valid:
+            print(f"You have {len(valid)} books valid!")
+            # print(valid)
+            for name, issue_date, return_date in valid:
+                print(f"{index}. '{name}' is valid and has to be returned by {str(return_date)}.")
+                index += 1
+        
+        return_index = get_valid_input("Which book index do you want to return? ", True, (0, index))
+        book = all_books[return_index - 1]
+        user_data["books"]["borrowed"].remove(book)
+        data_file = open(f"library_data/{username}.data", "w")
+        json.dump(user_data, data_file)
+        data_file.close()
+        print("Successfully returned book!")
+
 
 
 def list_borrowed():
@@ -101,7 +143,6 @@ def list_borrowed():
             print("    ")
             name, issue_date, return_date = books_borrowed[i]
             print(f"{i}. '{name}' borrowed on {issue_date} is due on {return_date}.")
-    dashboard()
 
 
 def list_returned():
@@ -165,12 +206,12 @@ def choose_random_book():
     book_list = []
     with open("book_list.data", "r") as f:
         book_list = f.readlines()
-    random_book = random.choice(book_list)
-    print(f"'{random_book.strip()}' was randomly chosen for you.")
+    random_book = random.choice(book_list).strip()
+    print(f"'{random_book}' was randomly chosen for you.")
     match get_valid_input("Accept book (0) / Reroll (1): ", True, (0,2)):
         case 0:
             weeks_to_borrow = get_valid_input("Enter for how many weeks you want to borrow book (1-3): ", True, (1, 4))
-            user_data["books"]["borrowed"].append((matching_books[borrow_index], str(date.today()), str(date.today() + timedelta(weeks = weeks_to_borrow))))
+            user_data["books"]["borrowed"].append((random_book, str(date.today()), str(date.today() + timedelta(weeks = weeks_to_borrow))))
             data_file = open(f"library_data/{username}.data", "w")
             json.dump(user_data, data_file)
             data_file.close()
