@@ -1,4 +1,6 @@
 import json
+import re
+from datetime import date, timedelta
 
 
 username = None
@@ -110,6 +112,44 @@ def list_returned():
         for i in range(len(books_borrowed)):
             name, issue_data, returned_date = books_borrowed[i]
             print(f"{i}. '{name}' borrowed at time {issue_date} was returned at {returned_date}")
+
+
+def borrow_more():
+    book_list = None
+    match get_valid_input("Search book (0) / List books (1) / Random book (2): ", True, (0,3)):
+        case 0:
+            search_book()
+        case 1:
+            pass
+        case 2:
+            pass
+
+
+def search_book():
+    book_list = None
+    with open("book_list.data", "r") as f:
+        book_list = f.readlines()
+    book_name = get_valid_input("Enter book name: ")
+    matching_books = []
+    for book in book_list:
+        book = book.strip()
+        match = re.search(book_name.lower(), book.lower())
+        if match:
+            matching_books.append(book)
+    if not matching_books:
+        print("No books match the given search text!")
+        borrow_more()
+    else:
+        for i in range(len(matching_books)):
+            print(f"{i}. {matching_books[i]}")
+        borrow_index = get_valid_input("Enter index to borrow that book: ", True, (0, len(matching_books)))
+        weeks_to_borrow = get_valid_input("Enter for how many weeks you want to borrow book (1-3): ", True, (1, 4))
+        user_data["books"]["borrowed"].append((matching_books[borrow_index], date.today(), date.today() + timedelta(weeks = weeks_to_borrow)))
+        data_file = open(f"library_data/{username}.data", "w")
+        json.dump(user_data, data_file)
+        data_file.close()
+        print("Successfully borrowed book!")
+        dashboard()
 
 
 if __name__ == "__main__":
