@@ -51,6 +51,7 @@ def sign_in():
   
 
 def register():
+    global user_data, username
     username = get_valid_input("Enter new library username: ").lower()
     data_file = None
     try:
@@ -79,9 +80,9 @@ def register():
 def dashboard():
     print("\n--------------------------Dashboard------------------------------")
     # print(user_data)
-    match get_valid_input("list borrowed (0) / list returned (1) / borrow more (2) / return more (3): ",
+    match get_valid_input("list borrowed (0) / list returned (1) / borrow more (2) / return more (3) / exit (4): ",
                           True,
-                          (0,4)):
+                          (0,5)):
         case 0:
             list_borrowed()
         case 1:
@@ -90,6 +91,9 @@ def dashboard():
             borrow_more()
         case 3:
             return_more() 
+        case 4:
+            print("Thank you for using the Library Management System!")
+            exit()
     dashboard()   
 
 
