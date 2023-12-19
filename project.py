@@ -1,5 +1,6 @@
 import json
 import re
+import random
 from datetime import date, timedelta
 
 
@@ -96,10 +97,11 @@ def list_borrowed():
         print("Currently no borrowed books")
     else:
         print("Currently borrowed books: ")
-        print("    ")
         for i in range(len(books_borrowed)):
-            name, issue_data, return_date = books_borrowed[i]
-            print(f"{i}. '{name}' borrowed at time {issue_date} is due at {return_date}")
+            print("    ")
+            name, issue_date, return_date = books_borrowed[i]
+            print(f"{i}. '{name}' borrowed on {issue_date} is due on {return_date}.")
+    dashboard()
 
 
 def list_returned():
@@ -111,7 +113,7 @@ def list_returned():
         print("    ")
         for i in range(len(books_borrowed)):
             name, issue_data, returned_date = books_borrowed[i]
-            print(f"{i}. '{name}' borrowed at time {issue_date} was returned at {returned_date}")
+            print(f"{i}. '{name}' borrowed on {issue_date} was returned on {returned_date}")
 
 
 def borrow_more():
@@ -120,9 +122,10 @@ def borrow_more():
         case 0:
             search_book()
         case 1:
-            pass
+            list_books()
         case 2:
-            pass
+            choose_random_book()
+    borrow_more()
 
 
 def search_book():
@@ -138,19 +141,42 @@ def search_book():
             matching_books.append(book)
     if not matching_books:
         print("No books match the given search text!")
-        borrow_more()
     else:
         for i in range(len(matching_books)):
             print(f"{i}. {matching_books[i]}")
         borrow_index = get_valid_input("Enter index to borrow that book: ", True, (0, len(matching_books)))
         weeks_to_borrow = get_valid_input("Enter for how many weeks you want to borrow book (1-3): ", True, (1, 4))
-        user_data["books"]["borrowed"].append((matching_books[borrow_index], date.today(), date.today() + timedelta(weeks = weeks_to_borrow)))
+        user_data["books"]["borrowed"].append((matching_books[borrow_index], str(date.today()), str(date.today() + timedelta(weeks = weeks_to_borrow))))
         data_file = open(f"library_data/{username}.data", "w")
         json.dump(user_data, data_file)
         data_file.close()
         print("Successfully borrowed book!")
-        dashboard()
 
+
+def list_books():
+    book_list = []
+    with open("book_list.data", "r") as f:
+        book_list = f.readlines()
+    for i in range(len(book_list)):
+        print(f"{i}. {book_list[i].strip()}")
+
+
+def choose_random_book():
+    book_list = []
+    with open("book_list.data", "r") as f:
+        book_list = f.readlines()
+    random_book = random.choice(book_list)
+    print(f"'{random_book.strip()}' was randomly chosen for you.")
+    match get_valid_input("Accept book (0) / Reroll (1): ", True, (0,2)):
+        case 0:
+            weeks_to_borrow = get_valid_input("Enter for how many weeks you want to borrow book (1-3): ", True, (1, 4))
+            user_data["books"]["borrowed"].append((matching_books[borrow_index], str(date.today()), str(date.today() + timedelta(weeks = weeks_to_borrow))))
+            data_file = open(f"library_data/{username}.data", "w")
+            json.dump(user_data, data_file)
+            data_file.close()
+            print("Successfully borrowed book!")
+        case 1:
+            choose_random_book()
 
 if __name__ == "__main__":
     main(True)
