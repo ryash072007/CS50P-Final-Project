@@ -25,7 +25,3 @@ The aim of the project is provide a simple TUI (Textual User Interface) to manag
 
 ## Design
 There is a folder in the same level as project.py labelled "library_data" which contains variable amounts (number of users) of '.data' files. The names of these files are the usernames and the data for that user, i.e, the password, borrowed books, and returned books along with their issue dates and return dates are stored there. 
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzNTM4ODg1NTcsLTkxMzE3ODY3NiwtNj
-cxNTU3NDE2LC0xMzYzMDg5NjA1LC0xMzA0NzcxMzc4XX0=
--->
