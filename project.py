@@ -140,7 +140,7 @@ def return_more():
                 index += 1
         
         return_index = get_valid_input("Which book index do you want to return? ", True, (0, index))
-        book = all_books[return_index - 1]
+        book = all_books[return_index]
         user_data["books"]["borrowed"].remove(book)
         user_data["books"]["returned"].append(book)
         data_file = open(f"library_data/{username}.data", "w")
